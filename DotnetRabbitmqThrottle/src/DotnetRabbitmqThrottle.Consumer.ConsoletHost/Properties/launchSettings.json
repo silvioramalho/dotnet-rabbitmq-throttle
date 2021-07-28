@@ -2,7 +2,7 @@
   "profiles": {
     "DotnetRabbitmqThrottle.Consumer.ConsoletHost": {
       "commandName": "Project",
-      "commandLineArgs": "\"amqp://userpoc:POC2021!@localhost:5672/\" \"testqueue\""
+      "commandLineArgs": "\"testqueue\""
     }
   }
 }

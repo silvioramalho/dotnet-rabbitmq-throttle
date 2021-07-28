@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
-using DotnetRabbitmqThrottle.Producer.API.Models;
+using System.Linq;
+using DotnetRabbitmqThrottle.Application;
+using DotnetRabbitmqThrottle.Application.ViewModels;
+using DotnetRabbitmqThrottle.Producer.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -9,19 +12,17 @@ namespace DotnetRabbitmqThrottle.Producer.API.Controllers
     [Route("api/messages")]
     public class ProduceMessageController : ControllerBase
     {
-
         private static Counter _counter = new Counter();
         private readonly ILogger<ProduceMessageController> _logger;
         private readonly IProducerMessage _producerMessage;
-        
+
         public ProduceMessageController(
             ILogger<ProduceMessageController> logger,
             IProducerMessage producerMessage)
         {
             _logger = logger;
             _producerMessage = producerMessage;
-
-        }        
+        }
 
         [HttpGet]
         public object Get()
@@ -33,11 +34,11 @@ namespace DotnetRabbitmqThrottle.Producer.API.Controllers
         }
 
         [HttpPost]
-        public object Post([FromBody] IEnumerable<Message> messages)
+        public object Post([FromBody] IEnumerable<MessageViewModel> messages)
         {
             lock (_counter)
             {
-                _counter.Inc();
+                _counter.Inc(messages.Count());
 
                 _producerMessage.Send(messages);
 

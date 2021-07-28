@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using RestEase;
 
-namespace DotnetRabbitmqThrottle.Consumer.ConsoletHost
+namespace DotnetRabbitmqThrottle.Application
 {
     public interface IMessageSender
     {

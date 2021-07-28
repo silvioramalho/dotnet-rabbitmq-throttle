@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Consumer.ConsoletHost", "src\DotnetRabbitmqThrottle.Consumer.ConsoletHost\DotnetRabbitmqThrottle.Consumer.ConsoletHost.csproj", "{AC318729-C19B-457D-81FE-3E1ABC8981E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Consumer.ConsoletHost", "src\DotnetRabbitmqThrottle.Consumer.ConsoletHost\DotnetRabbitmqThrottle.Consumer.ConsoletHost.csproj", "{AC318729-C19B-457D-81FE-3E1ABC8981E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Producer.API", "src\DotnetRabbitmqThrottle.Producer.API\DotnetRabbitmqThrottle.Producer.API.csproj", "{03C0186F-8131-4529-BDAF-49A29AE62277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Producer.API", "src\DotnetRabbitmqThrottle.Producer.API\DotnetRabbitmqThrottle.Producer.API.csproj", "{03C0186F-8131-4529-BDAF-49A29AE62277}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Domain", "src\DotnetRabbitmqThrottle.Domain\DotnetRabbitmqThrottle.Domain.csproj", "{3977E75F-EA36-4594-83BB-F668692E9CCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Application", "src\DotnetRabbitmqThrottle.Application\DotnetRabbitmqThrottle.Application.csproj", "{339FCD18-2257-4D9F-B77C-AA29BE51755B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{03C0186F-8131-4529-BDAF-49A29AE62277}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03C0186F-8131-4529-BDAF-49A29AE62277}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03C0186F-8131-4529-BDAF-49A29AE62277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3977E75F-EA36-4594-83BB-F668692E9CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3977E75F-EA36-4594-83BB-F668692E9CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3977E75F-EA36-4594-83BB-F668692E9CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3977E75F-EA36-4594-83BB-F668692E9CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339FCD18-2257-4D9F-B77C-AA29BE51755B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339FCD18-2257-4D9F-B77C-AA29BE51755B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339FCD18-2257-4D9F-B77C-AA29BE51755B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339FCD18-2257-4D9F-B77C-AA29BE51755B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

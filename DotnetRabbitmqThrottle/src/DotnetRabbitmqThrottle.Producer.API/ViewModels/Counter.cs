@@ -1,4 +1,4 @@
-﻿namespace DotnetRabbitmqThrottle.Producer.API.Models
+﻿namespace DotnetRabbitmqThrottle.Producer.API.ViewModels
 {
     public class Counter
     {
@@ -6,9 +6,9 @@
 
         public int Value { get => _currentValue; }
 
-        public void Inc()
+        public void Inc(int? value = null)
         {
-            _currentValue++;
+            _currentValue += value ?? 1;
         }
     }
 }

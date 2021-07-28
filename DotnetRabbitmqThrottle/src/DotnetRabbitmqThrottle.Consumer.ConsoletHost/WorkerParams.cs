@@ -2,7 +2,8 @@
 {
     public class WorkerParams
     {
-        public string ConnectionString { get; init; }
-        public string Queue { get; init; }
+        public string RabbitMQConnectionString { get; init; }
+        public string QueueName { get; init; }
+        public string RedisConnectionString { get; init; }
     }
 }
