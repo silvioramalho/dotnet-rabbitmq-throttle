@@ -24,7 +24,7 @@ namespace DotnetRabbitmqThrottle.Application.Services
             };
 
             _channel.QueueDeclare(queue: queueName,
-                               durable: false,
+                               durable: true,
                                exclusive: false,
                                autoDelete: false,
                                arguments: args);

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -20,8 +20,7 @@
     "DotnetRabbitmqThrottle.Producer.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/messages",
-      "applicationUrl": "https://localhost:5011;http://localhost:5010",
+      "applicationUrl": "http://localhost:59577",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

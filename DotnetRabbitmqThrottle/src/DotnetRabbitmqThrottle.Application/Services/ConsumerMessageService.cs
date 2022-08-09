@@ -40,7 +40,7 @@ namespace DotnetRabbitmqThrottle.Application.Services
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += Consumer_Received;
 
-            _channel.BasicQos(0, _throughput, true);
+            _channel.BasicQos(0, _throughput, false);
             _channel.BasicConsume(queue: _queueName,
                 autoAck: false,
                 consumer: consumer);
@@ -49,7 +49,7 @@ namespace DotnetRabbitmqThrottle.Application.Services
         private void Consumer_Received(
             object sender, BasicDeliverEventArgs ea)
         {
-            _tokenBucketThrottling.ThrottlerSemaphore(_queueName, Convert.ToInt32(_throughput));
+            //_tokenBucketThrottling.ThrottlerSemaphore(_queueName, Convert.ToInt32(_throughput));
 
             var messagecontent = Encoding.UTF8.GetString(ea.Body.ToArray()).DeserializeMessage();
             _logger.LogInformation(
@@ -57,7 +57,7 @@ namespace DotnetRabbitmqThrottle.Application.Services
 
             try
             {
-                CheckContactMessage(new { blocking = "wait", contacts = new[] { "+5531999991111" } });
+                //CheckContactMessage(new { blocking = "wait", contacts = new[] { "+5531999991111" } });
                 _channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
             }
             catch (Exception e)

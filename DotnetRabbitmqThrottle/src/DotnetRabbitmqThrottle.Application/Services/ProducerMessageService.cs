@@ -41,6 +41,7 @@ namespace DotnetRabbitmqThrottle.Application.Services
                     Message message = _mapper.Map<Message>(item);
                     IBasicProperties props = channel.CreateBasicProperties();
                     props.Priority = (byte)(item.Priority ?? 0);
+                    props.Persistent = true;
 
                     channel.BasicPublish(exchange: "",
                                          routingKey: queueName,
