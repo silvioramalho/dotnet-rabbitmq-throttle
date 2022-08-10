@@ -1,17 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Consumer.ConsoletHost", "src\DotnetRabbitmqThrottle.Consumer.ConsoletHost\DotnetRabbitmqThrottle.Consumer.ConsoletHost.csproj", "{AC318729-C19B-457D-81FE-3E1ABC8981E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Consumer.ConsoletHost", "src\DotnetRabbitmqThrottle.Consumer.ConsoletHost\DotnetRabbitmqThrottle.Consumer.ConsoletHost.csproj", "{AC318729-C19B-457D-81FE-3E1ABC8981E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Producer.API", "src\DotnetRabbitmqThrottle.Producer.API\DotnetRabbitmqThrottle.Producer.API.csproj", "{03C0186F-8131-4529-BDAF-49A29AE62277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Producer.API", "src\DotnetRabbitmqThrottle.Producer.API\DotnetRabbitmqThrottle.Producer.API.csproj", "{03C0186F-8131-4529-BDAF-49A29AE62277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Domain", "src\DotnetRabbitmqThrottle.Domain\DotnetRabbitmqThrottle.Domain.csproj", "{3977E75F-EA36-4594-83BB-F668692E9CCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Domain", "src\DotnetRabbitmqThrottle.Domain\DotnetRabbitmqThrottle.Domain.csproj", "{3977E75F-EA36-4594-83BB-F668692E9CCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Application", "src\DotnetRabbitmqThrottle.Application\DotnetRabbitmqThrottle.Application.csproj", "{339FCD18-2257-4D9F-B77C-AA29BE51755B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Application", "src\DotnetRabbitmqThrottle.Application\DotnetRabbitmqThrottle.Application.csproj", "{339FCD18-2257-4D9F-B77C-AA29BE51755B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRabbitmqThrottle.Producer.ConsoleApp", "src\DotnetRabbitmqThrottle.Producer.ConsoleApp\DotnetRabbitmqThrottle.Producer.ConsoleApp.csproj", "{75D0B3BC-4EB1-4ADC-A811-841D8721A2A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetRabbitmqThrottle.Producer.ConsoleApp", "src\DotnetRabbitmqThrottle.Producer.ConsoleApp\DotnetRabbitmqThrottle.Producer.ConsoleApp.csproj", "{75D0B3BC-4EB1-4ADC-A811-841D8721A2A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7E5E204-BA07-4449-88EB-3DE98439B080}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

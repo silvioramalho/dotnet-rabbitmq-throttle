@@ -2,6 +2,7 @@
 using DotnetRabbitmqThrottle.Application.ViewModels;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace DotnetRabbitmqThrottle.Producer.ConsoleApp
 {
@@ -34,6 +35,10 @@ namespace DotnetRabbitmqThrottle.Producer.ConsoleApp
             _logger.LogInformation(
                 "Publishing messages...");
 
+            var stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+
             List<MessageViewModel> messages = new List<MessageViewModel>();
 
             for (int i = 0; i < _workerParams.TotalMessages; i++)
@@ -49,6 +54,11 @@ namespace DotnetRabbitmqThrottle.Producer.ConsoleApp
             }
 
             _producerMessage.Send(messages);
+
+            stopwatch.Stop();
+            long media = _workerParams.TotalMessages/(stopwatch.ElapsedMilliseconds/1000);
+            _logger.LogInformation(
+                $"{_workerParams.TotalMessages} messages published in {stopwatch.ElapsedMilliseconds} ms(TPS: {media}/s)");
 
             await Task.Delay(1, stoppingToken);
         }
