@@ -1,5 +1,4 @@
-﻿using System.Xml.Xsl;
-using DotnetRabbitmqThrottle.Producer.ConsoleApp;
+﻿using DotnetRabbitmqThrottle.Producer.ConsoleApp;
 using DotnetRabbitmqThrottle.Producer.ConsoleApp.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +16,7 @@ using IHost host = Host.CreateDefaultBuilder(args)
         };
         services.AddSingleton<WorkerParams>(workerParams);
         services.AddApplicationServices(workerParams);
+        services.AddHostedService<ProducerWorker>();
         services.AddHostedService<Worker>();
     })
     .Build();

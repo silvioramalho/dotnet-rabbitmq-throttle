@@ -23,7 +23,9 @@ namespace DotnetRabbitmqThrottle.Producer.ConsoleApp.Extensions
                     return factory.CreateConnection();
                 })
                 .AddSingleton<IChannelSetup, ChannelSetupService>()
-                .AddSingleton<IProducerMessage, ProducerMessageService>();
+                .AddSingleton<ISubscriptionManager, SubscriptionManager>()
+                .AddSingleton<IProducerMessage, ProducerMessageService>()
+                .AddSingleton<BufferService>();
         }
     }
 }

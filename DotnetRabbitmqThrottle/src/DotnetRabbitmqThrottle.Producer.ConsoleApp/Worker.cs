@@ -1,4 +1,5 @@
 ﻿using DotnetRabbitmqThrottle.Application;
+using DotnetRabbitmqThrottle.Application.Services;
 using DotnetRabbitmqThrottle.Application.ViewModels;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -11,10 +12,12 @@ namespace DotnetRabbitmqThrottle.Producer.ConsoleApp
         private readonly ILogger<Worker> _logger;
         private readonly WorkerParams _workerParams;
         private readonly IProducerMessage _producerMessage;
+        private readonly BufferService _bufferChannel;
 
         public Worker(ILogger<Worker> logger,
             WorkerParams workerParams,
-            IProducerMessage producerMessage)
+            IProducerMessage producerMessage,
+            BufferService bufferChannel)
         {
             logger.LogInformation(
                 $"Queue = {workerParams.QueueName}");
@@ -22,45 +25,54 @@ namespace DotnetRabbitmqThrottle.Producer.ConsoleApp
             _logger = logger;
             _producerMessage = producerMessage;
             _workerParams = workerParams;
+            _bufferChannel = bufferChannel;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            //while (!stoppingToken.IsCancellationRequested)
-            //{
-            //    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            //    await Task.Delay(1000, stoppingToken);
-            //}
+        {          
 
             _logger.LogInformation(
                 "Publishing messages...");
 
-            var stopwatch = new Stopwatch();
+            //while (!stoppingToken.IsCancellationRequested)
+            //{
 
-            stopwatch.Start();
+                var stopwatch = new Stopwatch();
 
-            List<MessageViewModel> messages = new List<MessageViewModel>();
+                stopwatch.Start();
 
-            for (int i = 0; i < _workerParams.TotalMessages; i++)
-            {
-                messages.Add(new MessageViewModel()
+                List<MessageViewModel> messages = new List<MessageViewModel>();
+
+                for (int i = 0; i < _workerParams.TotalMessages; i++)
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    Content = "Message generated automaticaly",
-                    Priority = 0,
-                    To = "destination@queue.com",
-                    From = _workerParams.QueueName
-                });
-            }
+                    var message = new MessageViewModel()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Content = "Message generated automaticaly",
+                        Priority = 0,
+                        To = "destination@queue.com",
+                        From = _workerParams.QueueName
+                    };
+                    messages.Add(message);
+                    
+                    // Abordagem  Sugerida
+                    await _bufferChannel.Writer.WriteAsync(message, CancellationToken.None);
 
-            _producerMessage.Send(messages);
+                    //Abordagem Atual
+                    //_producerMessage.Send(new List<MessageViewModel>() { message }, 1.ToString());
+                }
+                
+                // Abordagem Perfeita (Mas impossível para o nosso cenário)
+                //_producerMessage.Send(messages, 1.ToString());
+                await Task.Delay(1000, stoppingToken);
 
-            stopwatch.Stop();
-            long media = _workerParams.TotalMessages/(stopwatch.ElapsedMilliseconds/1000);
-            _logger.LogInformation(
-                $"{_workerParams.TotalMessages} messages published in {stopwatch.ElapsedMilliseconds} ms(TPS: {media}/s)");
+                stopwatch.Stop();
+                long media = _workerParams.TotalMessages / (stopwatch.ElapsedMilliseconds / 1000);
+                _logger.LogInformation(
+                    $"{_workerParams.TotalMessages} messages published in {stopwatch.ElapsedMilliseconds} ms(TPS: {media}/s)");
 
-            await Task.Delay(1, stoppingToken);
+                await Task.Delay(1000, stoppingToken);
+            //}
         }
     }
 }

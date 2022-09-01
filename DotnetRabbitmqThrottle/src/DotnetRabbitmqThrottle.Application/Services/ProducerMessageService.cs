@@ -16,25 +16,39 @@ namespace DotnetRabbitmqThrottle.Application.Services
         private readonly ILogger<ProducerMessageService> _logger;
         private readonly IMapper _mapper;
         private readonly IChannelSetup _channelSetup;
+        private readonly ISubscriptionManager _subscriptionManager;
 
         public ProducerMessageService(
             IMapper mapper,
             IChannelSetup channelSetup,
+            ISubscriptionManager subscriptionManager,
             ILogger<ProducerMessageService> logger)
         {
             _logger = logger;
             _mapper = mapper;
             _channelSetup = channelSetup;
+            _subscriptionManager = subscriptionManager;
+
+            CreateChannels();
         }
 
-        public void Send(IEnumerable<MessageViewModel> messages)
+        private void CreateChannels()
+        {
+            for (int i = 0; i < Environment.ProcessorCount; i++)
+            {
+                _subscriptionManager.Subscribe(i.ToString(), _channelSetup.CreateChannel("testqueue"));
+            }
+        }
+
+        public void Send(IEnumerable<MessageViewModel> messages, string channelId)
         {
             try
             {
                 string queueName = messages.Select(p => p.From)
                     .FirstOrDefault(p => !string.IsNullOrWhiteSpace(p));
 
-                var channel = _channelSetup.CreateChannel(queueName);
+                //var channel = _channelSetup.CreateChannel(queueName);
+                var channel = _subscriptionManager.GetChannel(channelId);
 
                 foreach (var item in messages)
                 {

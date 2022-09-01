@@ -5,6 +5,6 @@ namespace DotnetRabbitmqThrottle.Application
 {
     public interface IProducerMessage
     {
-        void Send(IEnumerable<MessageViewModel> messages);
+        void Send(IEnumerable<MessageViewModel> messages, string channelId);
     }
 }
